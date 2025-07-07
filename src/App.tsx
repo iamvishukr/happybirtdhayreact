@@ -22,7 +22,6 @@ const App: React.FC = () => {
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const timeoutRefs = useRef<ReturnType<typeof setTimeout>[]>([]);
 
-  // Initialize audio
   useEffect(() => {
     audioRef.current = new Audio("/audio/happy_birthday.mp3");
     audioRef.current.preload = "auto";
@@ -70,22 +69,39 @@ const App: React.FC = () => {
     }));
     clearAllTimeouts();
 
-    addTimeout(() => setState((prev) => ({ ...prev, currentSlide: 2 })), 3000); // Slide 2
-    addTimeout(() => setState((prev) => ({ ...prev, currentSlide: 3 })), 7000); // Slide 3
-    addTimeout(() => setState((prev) => ({ ...prev, currentSlide: 4 })), 10000); // Slide 4
     addTimeout(() => {
-      setState((prev) => ({ ...prev, currentSlide: 5 }));
-      playAudioSegment(6, 6); // Play from 13s onward exactly here
-    }, 15000); // Slide 7 appears // Slide 5
-    addTimeout(() => setState((prev) => ({ ...prev, currentSlide: 6 })), 22000); // Slide 6 (balloons)
+      playAudioSegment(6, 6); // Start at Slide 2 with music
+      setState((prev) => ({ ...prev, currentSlide: 2 }));
+    }, 3000);
 
-    // ✅ Play music from 13s when Slide 7 (photo) shows
+    addTimeout(() => {
+      playAudioSegment(6, 6);
+      setState((prev) => ({ ...prev, currentSlide: 3 }));
+    }, 7000);
+
+    addTimeout(() => {
+      playAudioSegment(6, 6);
+      setState((prev) => ({ ...prev, currentSlide: 4 }));
+    }, 10000);
+
+    addTimeout(() => {
+      playAudioSegment(6, 6);
+      setState((prev) => ({ ...prev, currentSlide: 5 }));
+    }, 14000);
+
+    addTimeout(() => {
+      setState((prev) => ({ ...prev, currentSlide: 6 })); // Silent
+    }, 22000);
+
     addTimeout(() => {
       setState((prev) => ({ ...prev, currentSlide: 7 }));
-      playAudioSegment(13); // Play from 13s onward exactly here
-    }, 40000); // Slide 7 appears
+      playAudioSegment(13); // Start full music at Slide 7
+    }, 30000);
 
-    addTimeout(() => setState((prev) => ({ ...prev, currentSlide: 8 })), 38000); // Slide 8
+    addTimeout(() => {
+      setState((prev) => ({ ...prev, currentSlide: 8 }));
+    }, 38000);
+
     addTimeout(() => {
       setState((prev) => ({
         ...prev,
@@ -93,7 +109,7 @@ const App: React.FC = () => {
         isPlaying: false,
         showWatchAgain: true,
       }));
-    }, 45000); // Final Slide
+    }, 45000);
   };
 
   const watchAgain = () => {
@@ -292,11 +308,13 @@ const App: React.FC = () => {
             className={`${slideClass} bg-gradient-to-br from-purple-600 to-pink-600`}
           >
             <div className="text-center space-y-6 sm:space-y-8 animate-scale-in max-w-4xl mx-auto px-4 sm:px-6">
-              <div className="relative w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg mx-auto">
+              <div className="relative w-full max-w-md sm:max-w-lg md:max-w-xl lg:max-w-2xl mx-auto">
                 <img
                   src="./img/florence.png"
                   alt="Florence"
-                  className="w-full aspect-square sm:aspect-auto sm:h-auto rounded-full object-cover shadow-2xl animate-photo-reveal border-4 sm:border-8 border-white/30"
+                  loading="lazy"
+                  decoding="async"
+                  className="w-full h-auto aspect-[4/5] sm:aspect-[2/3] rounded-xl object-cover shadow-2xl animate-photo-reveal border-4 sm:border-8 border-white/30"
                 />
                 <div className="absolute -top-2 sm:-top-4 -right-2 sm:-right-4 animate-bounce">
                   <div className="w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 bg-yellow-400 rounded-full flex items-center justify-center text-xl sm:text-2xl shadow-lg">
