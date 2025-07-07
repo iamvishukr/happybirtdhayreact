@@ -314,7 +314,7 @@ const App: React.FC = () => {
                   alt="Florence"
                   loading="lazy"
                   decoding="async"
-                  className="w-full h-auto aspect-[4/5] sm:aspect-[2/3] rounded-xl object-cover shadow-2xl animate-photo-reveal border-4 sm:border-8 border-white/30"
+                  className="w-full h-auto aspect-[2/3] p-2 sm:aspect-[4/5] rounded-xl object-cover shadow-2xl animate-photo-reveal border-4 sm:border-8 border-white/30"
                 />
                 <div className="absolute -top-2 sm:-top-4 -right-2 sm:-right-4 animate-bounce">
                   <div className="w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 bg-yellow-400 rounded-full flex items-center justify-center text-xl sm:text-2xl shadow-lg">
