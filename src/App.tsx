@@ -225,7 +225,7 @@ const App: React.FC = () => {
                 </p>
               </div>
               <button className="w-full bg-yellow-400 text-black py-3 rounded-xl font-semibold hover:shadow-lg transition-all duration-300 animate-fade-in-delayed text-base sm:text-lg">
-                Send  💖
+                Send  
               </button>
             </div>
           </div>
