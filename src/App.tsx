@@ -99,12 +99,12 @@ const App: React.FC = () => {
 
     // Slide 5: Thought process (8s)
     addTimeout(() => {
-      playAudioSegment(13); // Play from 13s to end
       setState((prev) => ({ ...prev, currentSlide: 6 }));
     }, 22000);
 
     // Slide 7: Photo appears + continue music (13s onward) (5s)
     addTimeout(() => {
+      playAudioSegment(13); // Play from 13s to end
       setState((prev) => ({ ...prev, currentSlide: 8 }));
     }, 38000);
 
