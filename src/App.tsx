@@ -157,7 +157,7 @@ const App: React.FC = () => {
               </div>
               <button
                 onClick={startAnimation}
-                className="group bg-white/20 backdrop-blur-sm border border-white/30 text-white px-8 sm:px-12 py-3 sm:py-4 rounded-full text-lg sm:text-xl font-semibold hover:bg-white/30 transition-all duration-300 transform hover:scale-105 shadow-2xl w-full sm:w-auto"
+                className="group bg-white/20 backdrop-blur-sm border border-white/30 text-white px-8 sm:px-12 py-3 sm:py-4  text-lg sm:text-xl font-semibold hover:bg-white/30 transition-all duration-300 transform hover:scale-105 shadow-2xl w-full sm:w-auto"
               >
                 <div className="flex items-center justify-center space-x-3">
                   <Play className="w-5 h-5 sm:w-6 sm:h-6 group-hover:animate-pulse" />
