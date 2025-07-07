@@ -22,7 +22,6 @@ const App: React.FC = () => {
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const timeoutRefs = useRef<ReturnType<typeof setTimeout>[]>([]);
 
-
   // Initialize audio
   useEffect(() => {
     audioRef.current = new Audio("/audio/happy_birthday.mp3");
@@ -71,44 +70,22 @@ const App: React.FC = () => {
     }));
     clearAllTimeouts();
 
-    // Slide 1: Greeting (3s)
-    addTimeout(() => {
-      setState((prev) => ({ ...prev, currentSlide: 2 }));
-    }, 3000);
-
-    // Slide 2: Beautiful name + Because you are beautiful (4s)
-    addTimeout(() => {
-      setState((prev) => ({ ...prev, currentSlide: 3 }));
-    }, 7000);
-
-    // Slide 3: It's your birthday (3s)
-    addTimeout(() => {
-      playAudioSegment(6, 6); // Play from 6s to 12s
-      setState((prev) => ({ ...prev, currentSlide: 4 }));
-    }, 10000);
-
-    // Slide 4: Chat message (4s)
+    addTimeout(() => setState((prev) => ({ ...prev, currentSlide: 2 })), 3000); // Slide 2
+    addTimeout(() => setState((prev) => ({ ...prev, currentSlide: 3 })), 7000); // Slide 3
+    addTimeout(() => setState((prev) => ({ ...prev, currentSlide: 4 })), 10000); // Slide 4
     addTimeout(() => {
       setState((prev) => ({ ...prev, currentSlide: 5 }));
-    }, 14000);
+      playAudioSegment(6, 6); // Play from 13s onward exactly here
+    }, 15000); // Slide 7 appears // Slide 5
+    addTimeout(() => setState((prev) => ({ ...prev, currentSlide: 6 })), 22000); // Slide 6 (balloons)
 
-    // Slide 6: Balloons appear + music (6-12s) (3s)
+    // ✅ Play music from 13s when Slide 7 (photo) shows
     addTimeout(() => {
       setState((prev) => ({ ...prev, currentSlide: 7 }));
-    }, 30000);
+      playAudioSegment(13); // Play from 13s onward exactly here
+    }, 40000); // Slide 7 appears
 
-    // Slide 5: Thought process (8s)
-    addTimeout(() => {
-      setState((prev) => ({ ...prev, currentSlide: 6 }));
-    }, 22000);
-
-    // Slide 7: Photo appears + continue music (13s onward) (5s)
-    addTimeout(() => {
-      playAudioSegment(13); // Play from 13s to end
-      setState((prev) => ({ ...prev, currentSlide: 8 }));
-    }, 38000);
-
-    // Slide 8: Final message + confetti (4s)
+    addTimeout(() => setState((prev) => ({ ...prev, currentSlide: 8 })), 38000); // Slide 8
     addTimeout(() => {
       setState((prev) => ({
         ...prev,
@@ -116,7 +93,7 @@ const App: React.FC = () => {
         isPlaying: false,
         showWatchAgain: true,
       }));
-    }, 45000);
+    }, 45000); // Final Slide
   };
 
   const watchAgain = () => {
@@ -252,7 +229,7 @@ const App: React.FC = () => {
                   But then I stopped.
                 </p>
                 <p className="text-xl sm:text-2xl md:text-4xl lg:text-5xl text-white font-semibold animate-fade-in-delayed-2 leading-tight">
-                  I realised, I wanted to do something
+                  I realised, I wanted to do something <br />
                   <span className="text-yellow-300 font-bold animate-text-glow ml-1 sm:ml-2 block sm:inline">
                     special
                   </span>
