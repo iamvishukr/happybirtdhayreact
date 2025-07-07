@@ -70,28 +70,28 @@ const App: React.FC = () => {
     clearAllTimeouts();
 
     addTimeout(() => {
-      playAudioSegment(6, 6); // Start at Slide 2 with music
+      // playAudioSegment(6, 6); // Start at Slide 2 with music
       setState((prev) => ({ ...prev, currentSlide: 2 }));
     }, 3000);
 
     addTimeout(() => {
-      playAudioSegment(6, 6);
+      // playAudioSegment(6, 6);
       setState((prev) => ({ ...prev, currentSlide: 3 }));
     }, 7000);
 
     addTimeout(() => {
-      playAudioSegment(6, 6);
       setState((prev) => ({ ...prev, currentSlide: 4 }));
     }, 10000);
 
     addTimeout(() => {
-      playAudioSegment(6, 6);
       setState((prev) => ({ ...prev, currentSlide: 5 }));
     }, 14000);
 
     addTimeout(() => {
+      // playAudioSegment(4, 6);
+
       setState((prev) => ({ ...prev, currentSlide: 6 })); // Silent
-    }, 22000);
+    }, 25000);
 
     addTimeout(() => {
       setState((prev) => ({ ...prev, currentSlide: 7 }));
@@ -224,8 +224,8 @@ const App: React.FC = () => {
                   bla bla bla... 🎉💕
                 </p>
               </div>
-              <button className="w-full bg-gradient-to-r from-pink-500 to-blue-500 text-white py-3 rounded-xl font-semibold hover:shadow-lg transition-all duration-300 animate-fade-in-delayed text-base sm:text-lg">
-                Send Love 💖
+              <button className="w-full bg-yellow-400 text-black py-3 rounded-xl font-semibold hover:shadow-lg transition-all duration-300 animate-fade-in-delayed text-base sm:text-lg">
+                Send  💖
               </button>
             </div>
           </div>
