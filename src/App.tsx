@@ -20,7 +20,8 @@ const App: React.FC = () => {
   });
 
   const audioRef = useRef<HTMLAudioElement | null>(null);
-  const timeoutRefs = useRef<NodeJS.Timeout[]>([]);
+  const timeoutRefs = useRef<ReturnType<typeof setTimeout>[]>([]);
+
 
   // Initialize audio
   useEffect(() => {
